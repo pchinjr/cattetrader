@@ -106,14 +106,28 @@ var render = function() {
   p1.checkBank();
   p1.checkStash();
   p1.checkPrices();
+  if(days===0) {
+    alert('Time\'s up, you finished with $' + p1.bank + ' dollars')
+  }
 };
 
 var p1 = new Player('Paul', 100, [], 'NFK');
-
 
 $('#buy').on('click', function() {
   var type = $('#type').val().toLowerCase();
   p1.buy(type);
 });
 
+$('#sell').on('click', function() {
+  var type = $('#type').val().toLowerCase();
+  p1.sell(type);
+});
+
+$('#jet').on('click', function(){
+  var place = $('#place').val();
+  p1.jet(place);
+})
+
+$('#days').html(days);
+$('#location').html(p1.location);
 render();
