@@ -49,14 +49,24 @@ Player.prototype.checkStash = function() {
 
 Player.prototype.checkBank = function() {
   if(this.bank === 0) {
+    $('#bank').html('You have run out of money');
     console.log("You have run out of money :(");
     return;
   }
+  $('#bank').html(this.bank);
   console.log('Your bank is $' + this.bank);
 };
 
 Player.prototype.checkPrices = function() {
   console.log('Local Prices are:' + '\n' + 'orange - ' + CatPrices.orange + ' / black - ' + CatPrices.black + ' / silver - ' + CatPrices.silver + ' / white - ' + CatPrices.white);
+};
+
+Player.prototype.jet= function(location) {
+  this.location = location;
+  days -= 1;
+  console.log('You jet to ' + this.location);
+  console.log('There are ' + days + ' days left' + '\r\n' + ' ');
+  updatePrice();
 };
 
 var updatePrice = function() {
@@ -68,30 +78,22 @@ var updatePrice = function() {
   CatPrices.white = Math.floor(CatPrices.white*localPrice[index]);
 };
 
-Player.prototype.jet= function(location) {
-  this.location = location;
-  days -= 1;
-  console.log('You jet to ' + this.location);
-  console.log('There are ' + days + ' days left' + '\r\n' + ' ');
-  updatePrice();
+var render = function() {
+  p1.checkBank();
+  p1.checkStash();
+  p1.checkPrices();
 };
 
 var p1 = new Player('Paul', 100, [], 'Norfolk');
 
-p1.checkBank();
-p1.checkStash();
-p1.checkPrices();
+render();
 p1.buy('white');
 p1.jet('L.A.');
 
-p1.checkBank();
-p1.checkStash();
-p1.checkPrices();
+render();
 p1.buy('orange');
 p1.jet('D.C.');
 
-p1.checkBank();
-p1.checkStash();
-p1.checkPrices();
+render();
 p1.buy('black');
 p1.jet('ATL');
