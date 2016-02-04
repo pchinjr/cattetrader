@@ -94,7 +94,7 @@ Player.prototype.jet= function(location) {
 };
 
 var updatePrice = function() {
-  var localPrice = [0.95, 1, 1.05];
+  var localPrice = [0.8, 1, 1.20];
   var index = Math.floor(Math.random()*3);
   CatPrices.orange = Math.round(CatPrices.orange*localPrice[Math.floor(Math.random()*3)]);
   CatPrices.black = Math.round(CatPrices.black*localPrice[Math.floor(Math.random()*3)]);
