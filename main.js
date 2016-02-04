@@ -1,4 +1,4 @@
-var days = 7;
+var days = 30;
 
 function Player(name, bank, stash, location) {
   this.name = name;
@@ -8,10 +8,10 @@ function Player(name, bank, stash, location) {
 }
 
 var CatPrices = {
-  'orange': 20,
-  'black': 5,
-  'silver': 15,
-  'white': 10
+  'orange': 900,
+  'black': 50,
+  'silver': 250,
+  'white': 600
 };
 
 Player.prototype.buy = function(type) {
@@ -94,12 +94,12 @@ Player.prototype.jet= function(location) {
 };
 
 var updatePrice = function() {
-  var localPrice = [0.80, 1, 1.20];
+  var localPrice = [0.95, 1, 1.05];
   var index = Math.floor(Math.random()*3);
-  CatPrices.orange = Math.floor(CatPrices.orange*localPrice[index]);
-  CatPrices.black = Math.floor(CatPrices.black*localPrice[index]);
-  CatPrices.silver = Math.floor(CatPrices.silver*localPrice[index]);
-  CatPrices.white = Math.floor(CatPrices.white*localPrice[index]);
+  CatPrices.orange = Math.round(CatPrices.orange*localPrice[Math.floor(Math.random()*3)]);
+  CatPrices.black = Math.round(CatPrices.black*localPrice[Math.floor(Math.random()*3)]);
+  CatPrices.silver = Math.round(CatPrices.silver*localPrice[Math.floor(Math.random()*3)]);
+  CatPrices.white = Math.round(CatPrices.white*localPrice[Math.floor(Math.random()*3)]);
 };
 
 var render = function() {
@@ -111,7 +111,7 @@ var render = function() {
   }
 };
 
-var p1 = new Player('Paul', 100, [], 'NFK');
+var p1 = new Player('Paul', 1000, [], 'NFK');
 
 $('#buy').on('click', function() {
   var type = $('#type').val().toLowerCase();
